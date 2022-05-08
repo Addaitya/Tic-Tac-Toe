@@ -25,13 +25,13 @@ using namespace std;
 		            {' ',  '|',  ' ',  '|',  ' '}
 		
   				          };
-     		int k=9;	             // Here 
+     		int k=9;	             // Here k is the number of turns
 
 int convert(int a1)                //Here user defined positon of X-O is converted to array defined position
 {
 		if(a1==1)                             // (user defined pos)   ---->    (Actual pos)
 		{
-   	          return 0;                  //  (1 1)| (1 2)  |(1 3)            (0 0)| (0 2)  |(0 4)               If you compare coodinates :
+   	          return 0;                          //  (1 1)| (1 2)  |(1 3)            (0 0)| (0 2)  |(0 4)               If you compare coodinates :
 		}                               //       ---- +--------+----             ---- +--------+----
 		                               //        (2 1)| (2 2)  |(2 3)   ====>    (2 0)| (2,2)  |(2 4)                  1->0         2->2     3->4
 		else if(a1==3)                //          --- + -------+ ----             ----+--------+----
@@ -39,7 +39,7 @@ int convert(int a1)                //Here user defined positon of X-O is convert
 			return 4;               
 		}  
 		else if(a1>=4 || a1<=0)         
-		{
+		{                                    // when input is wrong function will return value greater than 4 
 			return 5;
 		}                                
 		                                 
@@ -48,7 +48,7 @@ int convert(int a1)                //Here user defined positon of X-O is convert
 
   					
   		
-  					
+  	/*prints empty game board*/				
 void print_empty_board()
 {
 		cout << "\n";
@@ -66,7 +66,8 @@ void print_empty_board()
 		}
 
 }
-		
+		/*print game board after inserting requred X or O*/
+
 void print(int n, int m, bool p)
 {
 	
@@ -88,7 +89,7 @@ void print(int n, int m, bool p)
 	    else                                  // When something other than number is written
 	    {
 	    	cout << "\n Wrong Input";
-	    	k++;                                     //
+	    	k++;                                     // number of turns increased by one 
 	    	
 	  	}
 			cout << endl <<endl;
@@ -108,7 +109,7 @@ void print(int n, int m, bool p)
 	
 }
 
-		/*This function checks do any one won the game and who won it X or O*/
+		/*This function checks do any one won the game and who won it X or O. It doesn't check match tie or not*/
 int check()
 {
 			if((a[0][0]=='X' && a[0][2]=='X' && a[0][4]=='X') || (a[2][0]=='X' && a[2][2]=='X' && a[2][4]=='X') || (a[4][0]=='X' && a[4][2]=='X' && a[4][4]=='X'))
@@ -199,16 +200,18 @@ int main()
 				}
 		    }
 		         
-		         if(we<k)   
-		         {
-		         	we++;
-		         	ck=!ck;
-				 }
-		   		 if(rr==k)    
+		                if(we<k)        // "we' variable helps to switch back to X(or O) when wrong input is given in turn of X (or O respectively) in game.   
+		               {
+		         	   we++;
+					
+		         	   ck=!ck;
+			       }
+	    
+		   	  if(rr==k)    
 	  	          {
 	  	          	cout << "\n The Match Ties!";       
 	  	          	break;
-				  }   
+			  }   
 	  	
 	}
 	
